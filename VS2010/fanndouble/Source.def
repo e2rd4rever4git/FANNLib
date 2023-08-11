@@ -1,0 +1,25 @@
+LIBRARY FANNDOUBLE
+EXPORTS
+	fann_create_sparse_array
+	fann_create_from_file
+	fann_destroy
+	fann_get_num_input
+	fann_get_num_output
+	fann_get_MSE
+	fann_reset_MSE
+	fann_set_activation_function_hidden
+	fann_set_activation_function_output
+	fann_set_activation_steepness_hidden
+	fann_set_activation_steepness_output
+	fann_set_training_algorithm
+	fann_set_callback
+	fann_run
+	fann_save
+	fann_create_train
+	fann_read_train_from_file
+	fann_destroy_train
+	fann_num_input_train_data
+	fann_num_output_train_data
+	fann_train_on_data
+	fann_foo
+
