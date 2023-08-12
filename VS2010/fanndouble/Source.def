@@ -21,5 +21,7 @@ EXPORTS
 	fann_num_input_train_data
 	fann_num_output_train_data
 	fann_train_on_data
+	fann_save_train
+	fann_test_data
 	fann_foo
 
