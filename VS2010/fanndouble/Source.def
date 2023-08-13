@@ -12,6 +12,7 @@ EXPORTS
 	fann_set_activation_steepness_hidden
 	fann_set_activation_steepness_output
 	fann_set_training_algorithm
+	fann_set_train_stop_function
 	fann_set_callback
 	fann_run
 	fann_save
