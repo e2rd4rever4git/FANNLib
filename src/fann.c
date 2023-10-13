@@ -1460,6 +1460,76 @@ FANN_EXTERNAL void FANN_API fann_set_weight(struct fann *ann,
     }
 }
 
+FANN_EXTERNAL void FANN_API fann_set_weights_for_neuron(struct fann *ann,
+	fann_type weight, int layer, int neuron)
+{
+	struct fann_layer* layer_it;
+	struct fann_neuron* neuron_it;
+	unsigned int idx;
+	unsigned int weight_index;
+	int layer_i;
+	int neuron_i;	
+
+	/* Find the connection, simple brute force search through the network
+	   for one or more connections that match to minimize datastructure dependencies.
+	   Nothing is done if the connection does not already exist in the network. */
+
+	weight_index = 0;
+	   /* for each layer */
+	layer_i = 0;
+	for (layer_it = ann->first_layer; layer_it != ann->last_layer; layer_it++) {
+		/* for each neuron */
+		neuron_i = 0;
+		for (neuron_it = layer_it->first_neuron; neuron_it != layer_it->last_neuron; neuron_it++) {
+			/* for each connection */
+			for (idx = neuron_it->first_con; idx < neuron_it->last_con; idx++) {
+				if ((neuron_i == neuron) && (layer_i == layer))
+				{
+					ann->weights[weight_index] = weight;
+				}
+				weight_index++;
+			}
+			neuron_i++;
+		}
+		layer_i++;
+	}
+}
+
+FANN_EXTERNAL void FANN_API fann_correct_weights_for_neuron(struct fann* ann,
+	fann_type coef, int layer, int neuron)
+{
+	struct fann_layer* layer_it;
+	struct fann_neuron* neuron_it;
+	unsigned int idx;
+	unsigned int weight_index;
+	int layer_i;
+	int neuron_i;
+
+	/* Find the connection, simple brute force search through the network
+	   for one or more connections that match to minimize datastructure dependencies.
+	   Nothing is done if the connection does not already exist in the network. */
+
+	weight_index = 0;
+	/* for each layer */
+	layer_i = 0;
+	for (layer_it = ann->first_layer; layer_it != ann->last_layer; layer_it++) {
+		/* for each neuron */
+		neuron_i = 0;
+		for (neuron_it = layer_it->first_neuron; neuron_it != layer_it->last_neuron; neuron_it++) {
+			/* for each connection */
+			for (idx = neuron_it->first_con; idx < neuron_it->last_con; idx++) {
+				if ((neuron_i == neuron) && (layer_i == layer))
+				{
+					ann->weights[weight_index] *= coef;
+				}
+				weight_index++;
+			}
+			neuron_i++;
+		}
+		layer_i++;
+	}
+}
+
 FANN_GET_SET(void *, user_data)
 
 #ifdef FIXEDFANN

@@ -529,6 +529,18 @@ FANN_EXTERNAL void FANN_API fann_set_weight_array(struct fann *ann,
 FANN_EXTERNAL void FANN_API fann_set_weight(struct fann *ann,
     unsigned int from_neuron, unsigned int to_neuron, fann_type weight);
 
+/* Function: fann_set_weights_for_neuron
+	e2rd
+*/
+FANN_EXTERNAL void FANN_API fann_set_weights_for_neuron(struct fann *ann,
+	fann_type weight, int layer, int neuron);
+
+/* Function: fann_correct_weights_for_neuron
+	e2rd
+*/
+FANN_EXTERNAL void FANN_API fann_correct_weights_for_neuron(struct fann* ann,
+	fann_type coef, int layer, int neuron);
+
 /* Function: fann_set_user_data
 
     Store a pointer to user defined data. The pointer can be

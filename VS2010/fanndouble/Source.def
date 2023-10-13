@@ -11,6 +11,7 @@ EXPORTS
 	fann_set_activation_function_output
 	fann_set_activation_steepness_hidden
 	fann_set_activation_steepness_output
+	fann_set_activation_steepness	
 	fann_set_training_algorithm
 	fann_set_train_stop_function
 	fann_set_callback
@@ -29,6 +30,10 @@ EXPORTS
 	fann_scale_train
 	fann_scale_input
 	fann_descale_output
+	
+	fann_init_weights
+	fann_set_weights_for_neuron
+	fann_correct_weights_for_neuron
 
 	fann_foo
 
