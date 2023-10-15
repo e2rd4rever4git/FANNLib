@@ -1468,7 +1468,8 @@ FANN_EXTERNAL void FANN_API fann_set_weights_for_neuron(struct fann *ann,
 	unsigned int idx;
 	unsigned int weight_index;
 	int layer_i;
-	int neuron_i;	
+	int neuron_i;
+	int conn_i;
 
 	/* Find the connection, simple brute force search through the network
 	   for one or more connections that match to minimize datastructure dependencies.
@@ -1482,12 +1483,14 @@ FANN_EXTERNAL void FANN_API fann_set_weights_for_neuron(struct fann *ann,
 		neuron_i = 0;
 		for (neuron_it = layer_it->first_neuron; neuron_it != layer_it->last_neuron; neuron_it++) {
 			/* for each connection */
+			conn_i = 0;
 			for (idx = neuron_it->first_con; idx < neuron_it->last_con; idx++) {
-				if ((neuron_i == neuron) && (layer_i == layer))
+				if ((conn_i == neuron) && (layer_i == layer+1))
 				{
 					ann->weights[weight_index] = weight;
 				}
 				weight_index++;
+				conn_i++;
 			}
 			neuron_i++;
 		}
@@ -1504,6 +1507,7 @@ FANN_EXTERNAL void FANN_API fann_correct_weights_for_neuron(struct fann* ann,
 	unsigned int weight_index;
 	int layer_i;
 	int neuron_i;
+	int conn_i;
 
 	/* Find the connection, simple brute force search through the network
 	   for one or more connections that match to minimize datastructure dependencies.
@@ -1517,12 +1521,14 @@ FANN_EXTERNAL void FANN_API fann_correct_weights_for_neuron(struct fann* ann,
 		neuron_i = 0;
 		for (neuron_it = layer_it->first_neuron; neuron_it != layer_it->last_neuron; neuron_it++) {
 			/* for each connection */
+			conn_i = 0;
 			for (idx = neuron_it->first_con; idx < neuron_it->last_con; idx++) {
-				if ((neuron_i == neuron) && (layer_i == layer))
+				if ((conn_i == neuron) && (layer_i == layer + 1))
 				{
 					ann->weights[weight_index] *= coef;
 				}
 				weight_index++;
+				conn_i++;
 			}
 			neuron_i++;
 		}
