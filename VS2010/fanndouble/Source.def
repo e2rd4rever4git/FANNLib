@@ -26,6 +26,7 @@ EXPORTS
 	fann_save_train
 	fann_test_data
 
+	fann_clear_scaling_params	
 	fann_set_scaling_params
 	fann_scale_train
 	fann_scale_input
